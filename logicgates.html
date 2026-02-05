@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logic Gates</title>
+</head>
+<body> 
+    <h1>Logic Gates</h1>
+    <select class="input" id="input1">
+        <option value="0">0</option>
+        <option value="1">1</option>
+    </select>
+    <select class="input" id="input2">
+        <option value="0">0</option>
+        <option value="1">1</option>
+    </select>
+    <select class="gate" id="gate">
+        <option value="AND">AND</option>
+        <option value="OR">OR</option>
+        <option value="NOT">NOT</option>
+        <option value ="XOR">XOR</option>
+        <option vlaue="XNOR">XNOR</option>
+    </select>
+    <p>Your output is: <span class="output"id="ogate">?</span></p>
+    <h1>Bit Adder!</h1>
+    <select class="input"id="adder1">
+        <option value="0">0</option>
+        <option value="1">1</option>
+    </select>
+    <p>+</p>
+    <select class="input"id="adder2">
+        <option value="0">0</option>
+        <option value="1">1</option>
+    </select>
+    <p>=</p>
+    <span class="output"id="oaddercarry">?</span><span class="output"id="oaddersum">?</span>
+    <script src="app.js"></script>
+</body>
+</html>
