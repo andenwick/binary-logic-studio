@@ -3,38 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logic Gates</title>
+    <title>Binary Logic Studio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #f8fafc;
+        }
+
+        .card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            width: 100%;
+            max-width: 480px;
+        }
+
+        .card h2 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        label {
+            font-size: 0.75rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        select {
+            background: #0f172a;
+            color: #e2e8f0;
+            border: 1px solid #475569;
+            border-radius: 6px;
+            padding: 0.5rem 0.75rem;
+            font-size: 1rem;
+            font-family: "Cascadia Code", "Fira Code", monospace;
+            cursor: pointer;
+            transition: border-color 0.15s;
+        }
+
+        select:hover {
+            border-color: #7c3aed;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.25);
+        }
+
+        .result {
+            margin-top: 1.25rem;
+            padding: 1rem;
+            background: #0f172a;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            text-align: center;
+        }
+
+        .result-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .output {
+            font-family: "Cascadia Code", "Fira Code", monospace;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #7c3aed;
+        }
+
+        .operator {
+            font-family: "Cascadia Code", "Fira Code", monospace;
+            font-size: 1.25rem;
+            color: #64748b;
+        }
+
+        .adder-result {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .adder-result .result-group {
+            text-align: center;
+        }
+    </style>
 </head>
-<body> 
-    <h1>Logic Gates</h1>
-    <select class="input" id="input1">
-        <option value="0">0</option>
-        <option value="1">1</option>
-    </select>
-    <select class="input" id="input2">
-        <option value="0">0</option>
-        <option value="1">1</option>
-    </select>
-    <select class="gate" id="gate">
-        <option value="AND">AND</option>
-        <option value="OR">OR</option>
-        <option value="NOT">NOT</option>
-        <option value ="XOR">XOR</option>
-        <option vlaue="XNOR">XNOR</option>
-    </select>
-    <p>Your output is: <span class="output"id="ogate">?</span></p>
-    <h1>Bit Adder!</h1>
-    <select class="input"id="adder1">
-        <option value="0">0</option>
-        <option value="1">1</option>
-    </select>
-    <p>+</p>
-    <select class="input"id="adder2">
-        <option value="0">0</option>
-        <option value="1">1</option>
-    </select>
-    <p>=</p>
-    <span class="output"id="oaddercarry">?</span><span class="output"id="oaddersum">?</span>
+<body>
+    <h1>Binary Logic Studio</h1>
+
+    <div class="card">
+        <h2>Logic Gates</h2>
+        <div class="controls">
+            <div>
+                <label for="input1">Input A</label>
+                <select id="input1">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+            <div>
+                <label for="gate">Gate</label>
+                <select id="gate">
+                    <option value="AND">AND</option>
+                    <option value="OR">OR</option>
+                    <option value="NOT">NOT</option>
+                    <option value="XOR">XOR</option>
+                    <option value="XNOR">XNOR</option>
+                </select>
+            </div>
+            <div>
+                <label for="input2">Input B</label>
+                <select id="input2">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+        </div>
+        <div class="result">
+            <div class="result-label">Output</div>
+            <span class="output" id="ogate">?</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Half Adder</h2>
+        <div class="controls">
+            <div>
+                <label for="adder1">Bit A</label>
+                <select id="adder1">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+            <span class="operator">+</span>
+            <div>
+                <label for="adder2">Bit B</label>
+                <select id="adder2">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+        </div>
+        <div class="result">
+            <div class="adder-result">
+                <div class="result-group">
+                    <div class="result-label">Carry</div>
+                    <span class="output" id="oaddercarry">?</span>
+                </div>
+                <div class="result-group">
+                    <div class="result-label">Sum</div>
+                    <span class="output" id="oaddersum">?</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="app.js"></script>
 </body>
 </html>
